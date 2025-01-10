@@ -65,12 +65,26 @@
             Você pode se cadastrar novamente a qualquer momento acessando:
             <a class="link-mibrasil" href="https://www.mibrasil.com.br">www.mibrasil.com.br</a>
         </p>
-        <footer class="">Você será redirecionado em breve...</footer>
+        <footer id="redirection-message">Você será redirecionado em breve...</footer>
     </div>
 </div>
     <script>
         // Define o tempo de redirecionamento (em milissegundos)
         const redirectionTime = 10000; // 10 segundos
+
+        // Atualiza a mensagem de redirecionamento com contagem regressiva
+        const footerElement = document.getElementById('redirection-message');
+        let secondsRemaining = redirectionTime / 1000;
+        footerElement.textContent = `Você será redirecionado em ${secondsRemaining} segundos.`;
+
+        const countdown = setInterval(() => {
+            secondsRemaining--;
+            if (secondsRemaining > 0) {
+                footerElement.textContent = `Você será redirecionado em ${secondsRemaining} segundos.`;
+            } else {
+                clearInterval(countdown);
+            }
+        }, 1000);
 
         // Função para redirecionar o usuário
         setTimeout(() => {
