@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lamentamos que você esteja indo embora</title>
+
     <style>
         .container-layout-cancel {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+   
             color: #333;
             display: flex;
             flex-direction: column;
@@ -49,14 +49,14 @@
             text-decoration: underline;
         }
 
-        footer {
+        .footer-redirecionado{
             margin-top: 20px;
             font-size: 0.9rem;
             color: #666;
         }
     </style>
-</head>
-<body>
+
+
 
     <div class="container-layout-cancel">
     <div class="container-content-cancel">
@@ -65,31 +65,45 @@
             Você pode se cadastrar novamente a qualquer momento acessando:
             <a class="link-mibrasil" href="https://www.mibrasil.com.br">www.mibrasil.com.br</a>
         </p>
-        <footer id="redirection-message">Você será redirecionado em breve...</footer>
+        <p class="footer-redirecionado" id="redirection-message">Você será redirecionado em</p>
     </div>
 </div>
-    <script>
-        // Define o tempo de redirecionamento (em milissegundos)
-        const redirectionTime = 10000; // 10 segundos
 
-        // Atualiza a mensagem de redirecionamento com contagem regressiva
-        const footerElement = document.getElementById('redirection-message');
-        let secondsRemaining = redirectionTime / 1000;
-        footerElement.textContent = `Você será redirecionado em ${secondsRemaining} segundos.`;
 
-        const countdown = setInterval(() => {
-            secondsRemaining--;
-            if (secondsRemaining > 0) {
-                footerElement.textContent = `Você será redirecionado em ${secondsRemaining} segundos.`;
-            } else {
-                clearInterval(countdown);
-            }
-        }, 1000);
+<script>
+   // Define o tempo de redirecionamento (em milissegundos)
+   const redirectionTime = 10000; // 10 segundos
 
-        // Função para redirecionar o usuário
-        setTimeout(() => {
-            window.location.href = "https://www.mibrasil.com.br";
-        }, redirectionTime);
-    </script>
+// Seleciona a tag <p> com a classe 'footer-redirecionado'
+const paragraphElement = document.querySelector('.footer-redirecionado');
+
+if (paragraphElement) {
+    let secondsRemaining = Math.floor(redirectionTime / 1000);
+
+    // Atualiza o conteúdo do elemento com a contagem inicial
+    paragraphElement.textContent = `Você será redirecionado em ${secondsRemaining} segundos.`;
+
+    // Inicia o cronômetro de contagem regressiva
+    const countdown = setInterval(() => {
+        secondsRemaining--;
+
+        if (secondsRemaining > 0) {
+            paragraphElement.textContent = `Você será redirecionado em ${secondsRemaining} segundos.`;
+        } else {
+            clearInterval(countdown); // Para a contagem regressiva
+        }
+    }, 1000);
+
+    // Redireciona o usuário após o tempo definido
+    setTimeout(() => {
+        window.location.href = "https://www.mibrasil.com.br";
+    }, redirectionTime);
+} else {
+    // Caso o elemento <p> não seja encontrado, exibe uma mensagem de erro no console
+    console.error('Elemento <p> com a classe "footer-redirecionado" não encontrado.');
+}
+</script>
+
+
 </body>
 </html>
